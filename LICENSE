@@ -1,0 +1,22 @@
+    ProxyCash is using docker-compose to setup various proxies
+    in docker containers for profit
+    Copyright (C) <2023>  <marcuslark>
+
+    This program is a free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    <ProxyCash>  Copyright C <2023>  <marcuslark>
+    This program comes with ABSOLUTELY NO WARRANTY, The author does NOT
+    ACCEPT RESPONSIBILITY TO ANYONE FOR THE CONSEQUENCES OF USING IT OR
+    FOR WHETHER IT SERVES ANY PARTICULAR PURPOSE OR WORKS AT ALL:
+    This is free software, you are welcome to redistribute it

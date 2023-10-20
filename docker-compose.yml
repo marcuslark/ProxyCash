@@ -1,0 +1,124 @@
+#######################################
+#Author, Marcuslark
+#Marcus Lärk
+ #Fullstack, DevOps & Secure Developer
+ #Java, Golang, C#, JavaScript
+#######################################
+version: '3.5'
+
+services:
+  Portainer:
+    image: portainer/portainer-ce:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    ports:
+      - 8000:8000
+      - 9000:9000
+      - 9443:9443
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.106.9.15
+
+  Earnapp:
+    image: fazalfarhan01/earnapp:lite
+    restart: always
+    environment:
+      EARNAPP_UUID: $EARNAPP_UUID
+    networks:
+      default:
+        ipv4_address: 172.106.9.25
+
+  Honeygain:
+    image: honeygain/honeygain
+    command: -tou-accept -email $HONEYGAIN_EMAIL -pass $HONEYGAIN_PASSWD -device $DEVICE_NAME
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.106.9.35
+
+  IproyalPawns:
+    image: iproyal/pawns-cli:latest
+    command: -email=$IPROYALPAWNS_EMAIL -password=$IPROYALPAWNS_PASSWD -device-name=$DEVICE_NAME -accept-tos
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.106.9.45
+
+  TraffMonetizer:
+    image: traffmonetizer/cli_v2:latest
+    restart: always
+    environment:
+      token: $TRAFFMONETIZER_TOKEN
+    command: start accept
+    networks:
+      default:
+        ipv4_address: 172.106.9.55
+
+  Packetstream_PsClient:
+    image: packetstream/psclient:latest
+    restart: always
+    environment:
+      CID: $CID
+    networks:
+      default:
+        ipv4_address: 172.106.9.65
+
+  Packetstream_Watchtower:
+    image: containrrr/watchtower
+    command: --cleanup --include-stopped --revive-stopped --interval 60 Packetstream_PsClient
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.106.9.66
+
+  Bitping:
+    image: bitping/bitping-node:latest
+    restart: always
+    volumes:
+      - /path/to/host/.bitping:/root/.bitping
+    networks:
+      default:
+        ipv4_address: 172.106.9.75
+
+  Repocket:
+    image: repocket/repocket:latest
+    restart: always
+    env_file: rp.env
+    networks:
+      default:
+        ipv4_address: 172.106.9.85
+
+  proxyrack:
+    image: proxyrack/pop:latest
+    restart: always
+    environment:
+      api_key: $api_key
+      device_name: $device_name
+      UUID: $UUID
+    networks:
+      default:
+        ipv4_address: 172.106.9.95
+
+  proxylite:
+    image: proxylite/proxyservice:latest
+    restart: always
+    environment:
+      USER_ID: $USER_ID
+    networks:
+      default:
+        ipv4_address: 172.106.9.105
+
+volumes:
+  portainer_data:
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.106.9.0/24
