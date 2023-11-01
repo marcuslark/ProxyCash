@@ -26,10 +26,10 @@ To run the script execute:
 
 For manual start/stop run the docker-compose commands below
 
-Start stack \
+Start stack
 # § sudo docker-compose up -d (in ProxyCash directory)
 
-Stop stack \
+Stop stack
 # § sudo docker-compose down (in ProxyCash directory)
 
 
